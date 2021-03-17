@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang = "ru">
+    <head>
+        <meta charset="utf-8">
+        <base href="res/">
+        <title>Python</title>
+        <!--<link rel="stylesheet" href="css/ind_css.css">-->
+        <style>
+            body{
+                background-image: url(./image/back.jpg);
+                color: whitesmoke;
+            }
+           .header{
+               display: flex;
+               flex-direction: row;
+               align-items: center;
+               justify-content: center;
+           }
+           .header img{
+               height: 2em;
+               width: auto;
+           }
+           .description{
+               display: flex;
+               flex-direction: row;
+               justify-content: space-around;
+               
+           }
+           .d_opisan{
+               width: 30vw;
+               justify-content: center;
+               text-align: center;
+           }
+           .d_opisan img{
+               margin-top: 0.83em;
+               margin-bottom: 0.83em;
+               height: 2em;
+               align-self: center;
+           }
+           .s_author{
+               display: flex;
+               flex-direction: column;
+               width: 30vw;
+               justify-content: center;
+               text-align: center;
+            
+           }
+           .s_author img{
+                height: 30em;
+                width: auto;
+                margin-left: auto;
+                margin-right: auto;               
+           }
+           .d_code{
+               width: 30vw;
+               justify-content: center;
+               text-align: center;
+           }
+           .code{
+                width: 28vm;
+                background-color: black;
+                color: white;
+                text-align: left;
+           }
+           .sintacs{color: turquoise;}
+           .sintacs2{color: sandybrown;}
+           .usaly_text{color: tan;}
+           .link_sel{
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+               text-align: center;
+           }
+           .interview form{
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+           }
+           .useful_link a{
+               color: springgreen;
+           }
+           .footer{
+               text-align: center;
+               border: 1px slategrey solid;
+           }
+        </style>
+    </head>
+    <body>
+        <div class = "mysite">
+            <div class = "header">
+                <h1>Python</h1>
+                <img src="image/py.png" alt="Logo Python">
+            </div>
+            <div class = "content"> 
+                <div class="description">
+                    <div class="d_opisan">
+                        <img src="image/py2.png" alt="Logo Python">
+                        <div class = "only_text">
+                        Python - высокоуровневый язык программирования общего назначения с динамической 
+                        строгой типизацией и автоматическим управлением памятью, 
+                        ориентированный на повышение производительности разработчика, читаемости кода 
+                        и его качества, а также на обеспечение переносимости написанных на нём программ. 
+                        Язык является полностью объектно-ориентированным.
+                        Необычной особенностью языка является выделение блоков кода пробельными отступами.
+                        Синтаксис ядра языка минималистичен, за счёт чего на практике редко возникает
+                        необходимость обращаться к документации,сам же язык известен как 
+                        интерпретируемый и используется в том числе для написания скриптов.
+                        Недостатками языка являются зачастую более низкая скорость работы и 
+                        более высокое потребление памяти написанных на нём программ по сравнению с аналогичным кодом, 
+                        написанным на компилируемых языках, таких как Си или C++.
+                        </div>
+                    </div>
+                    <div class="s_author">
+                        <h2>Автор: <u>Гвидо ван Россум</u></h2>
+                        <img src="image/GVR.jpg" alt="Гвидо ван Россум">
+                    </div>                
+                    <div class="d_code">
+                        <h2>Пример кода</h2>
+                        <div class="code">
+                            <span class = "sintacs">def</span><span class="sintacs2">&nbsp;HiWorld</span>():
+                                <br><span class = "sintacs">&nbsp;&nbsp;&nbsp;print</span>(<span class="usaly_text">'Hallo World!'</span>)
+                            <br>
+                            <br><span class = "sintacs2">HiWorld</span>()
+
+                        </div>
+                    </div>
+                </div>
+                <div class = "link_sel">
+                    <div class="interview">
+                        <h2>А какой язык программирования нравится тебе:</h2>
+                        <form method="POST" action="http://localhost/yp">
+                            <select id="yp" name="yp">
+                                <option value="Python">Python</option>
+                                <option value="C#">C#</option>
+                                <option value="Java">Java</option>
+                                <option value="other">Другой</option>
+                            </select>
+                            <p><button type="submit">Отправить</button></p>
+                        </form>
+                    </div>
+                    <div class="useful_link">
+                        <h2>Полезные ссылки:</h2>
+                        <ul>
+                            <li><a href="https://ru.wikipedia.org/wiki/Python#IDE" target="_blank">Wikipedia</a></li>
+                            <li><a href="https://www.python.org/" target="_blank">Офицальный сайт</a></li>
+                            <li><a href="https://docs.python.org/" target="_blank">Документация</a> </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                © Рикусов Александр
+            </div>
+        </div>
+    </body>
+</html>
