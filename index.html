@@ -66,17 +66,37 @@
            .sintacs{color: turquoise;}
            .sintacs2{color: sandybrown;}
            .usaly_text{color: tan;}
-           .link_sel{
+           .selectes{
                display: flex;
-               flex-direction: column;
-               align-items: center;
+               flex-direction: row;
+               justify-content: space-around;
+           }
+           .interview{
                text-align: center;
+           }
+           .weather_head{
+               text-align: center;
+           }
+           .window_out{
+               height: 7em;
+               margin-top: 1em;
+               text-align: start;
+               font-size: 1em;
+               color: gold;
+               font-weight: bold;
            }
            .interview form{
                display: flex;
                flex-direction: column;
                align-items: center;
            }
+           .useful_link{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+           }
+           .useful_link ul{ margin-top: 0em;}
            .useful_link a{
                color: springgreen;
            }
@@ -127,17 +147,32 @@
                     </div>
                 </div>
                 <div class = "link_sel">
-                    <div class="interview">
-                        <h2>А какой язык программирования нравится тебе:</h2>
-                        <form method="POST" action="http://localhost/yp">
-                            <select id="yp" name="yp">
-                                <option value="Python">Python</option>
-                                <option value="C#">C#</option>
-                                <option value="Java">Java</option>
-                                <option value="other">Другой</option>
-                            </select>
-                            <p><button type="submit">Отправить</button></p>
-                        </form>
+                    <div class="selectes">
+                        <div class="interview">
+                            <h2>А какой язык программирования нравится тебе:</h2>
+                            <form method="POST" action="http://localhost/yp">
+                                <select id="yp" name="yp">
+                                    <option value="Python">Python</option>
+                                    <option value="C#">C#</option>
+                                    <option value="Java">Java</option>
+                                    <option value="other">Другой</option>
+                                </select>
+                                <p><button type="submit">Отправить</button></p>
+                            </form>
+                        </div>
+                        <div class = "weather">
+                            <div class = "weather_head">
+                                <h2>Не хотите узнать погоду?</h2>
+                                <select name="city" id="city">
+                                    <option value="Saint Petersburg">Санкт-Петербург</option>
+                                    <option value="Moscow">Москва</option>
+                                    <option value="London">Лондон</option>
+                                    <option value="Tokio">Токио</option>
+                                </select>
+                                <button id="what_is_weather">Узнать погоду</button>
+                            </div>
+                            <div class="window_out"></div>
+                        </div>
                     </div>
                     <div class="useful_link">
                         <h2>Полезные ссылки:</h2>
@@ -154,5 +189,39 @@
                 © Рикусов Александр
             </div>
         </div>
+        <script>
+            document.getElementById("what_is_weather").addEventListener('click', GetWeather);
+            var req = new XMLHttpRequest();
+
+            function GetWeather(){
+                var city_name = document.querySelector("#city");
+                city_name = city_name.options[city_name.selectedIndex].value;
+                var url = "http://api.openweathermap.org/data/2.5/weather?q=" + city_name+"&appid=db2c967e6867f1bf1add23accae1bdb3&lang=ru&units=metric"
+                
+                req.open("GET",url);
+                req.send();
+
+                req.onload = ParserWeather
+            }
+
+            function ParserWeather(){
+                if (req.status == 200){
+                    var weather_city = JSON.parse(req.responseText)
+                    var html_part ="<u>Город</u>: "+weather_city.name;
+                    html_part+="<br><u>Погодные условия</u>: "+weather_city.weather[0].description;
+                    html_part+="<br><u>Температура</u>: "+weather_city.main.temp+"°C";
+                    html_part+="<br><u>Атмосферное давление</u>: "+weather_city.main.pressure+" гПа";
+                    html_part+="<br><u>Влажность</u>: "+weather_city.main.humidity+" %";
+                    html_part+="<br><u>Скорость ветра</u>: "+weather_city.wind.speed+" м/с";
+                    AddWeather(html_part);
+                } 
+                else alert('Что-то пошло не так!');
+            }
+
+            function AddWeather(weat){
+                var w_out = document.querySelector(".window_out");
+                w_out.innerHTML = weat;
+            }
+        </script>
     </body>
 </html>
