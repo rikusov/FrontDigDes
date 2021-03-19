@@ -190,10 +190,10 @@
             </div>
         </div>
         <script>
-            document.getElementById("what_is_weather").addEventListener('click', GetWeather);
+            document.getElementById("what_is_weather").addEventListener('click', getWeather);
             var req = new XMLHttpRequest();
 
-            function GetWeather(){
+            function getWeather(){
                 var city_name = document.querySelector("#city");
                 city_name = city_name.options[city_name.selectedIndex].value;
                 var url = "http://api.openweathermap.org/data/2.5/weather?q=" + city_name+"&appid=db2c967e6867f1bf1add23accae1bdb3&lang=ru&units=metric"
@@ -201,10 +201,10 @@
                 req.open("GET",url);
                 req.send();
 
-                req.onload = ParserWeather
+                req.onload = parserWeather
             }
 
-            function ParserWeather(){
+            function parserWeather(){
                 if (req.status == 200){
                     var weather_city = JSON.parse(req.responseText)
                     var html_part ="<u>Город</u>: "+weather_city.name;
@@ -213,12 +213,12 @@
                     html_part+="<br><u>Атмосферное давление</u>: "+weather_city.main.pressure+" гПа";
                     html_part+="<br><u>Влажность</u>: "+weather_city.main.humidity+" %";
                     html_part+="<br><u>Скорость ветра</u>: "+weather_city.wind.speed+" м/с";
-                    AddWeather(html_part);
+                    addWeather(html_part);
                 } 
                 else alert('Что-то пошло не так!');
             }
 
-            function AddWeather(weat){
+            function addWeather(weat){
                 var w_out = document.querySelector(".window_out");
                 w_out.innerHTML = weat;
             }
