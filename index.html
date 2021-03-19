@@ -4,7 +4,6 @@
         <meta charset="utf-8">
         <base href="res/">
         <title>Python</title>
-        <!--<link rel="stylesheet" href="css/ind_css.css">-->
         <style>
             body{
                 background-image: url(./image/back.jpg);
@@ -148,18 +147,7 @@
                 </div>
                 <div class = "link_sel">
                     <div class="selectes">
-                        <div class="interview">
-                            <h2>А какой язык программирования нравится тебе:</h2>
-                            <form method="POST" action="http://localhost/yp">
-                                <select id="yp" name="yp">
-                                    <option value="Python">Python</option>
-                                    <option value="C#">C#</option>
-                                    <option value="Java">Java</option>
-                                    <option value="other">Другой</option>
-                                </select>
-                                <p><button type="submit">Отправить</button></p>
-                            </form>
-                        </div>
+                        <div id = "root" class="interview"></div>
                         <div class = "weather">
                             <div class = "weather_head">
                                 <h2>Не хотите узнать погоду?</h2>
@@ -222,6 +210,53 @@
                 var w_out = document.querySelector(".window_out");
                 w_out.innerHTML = weat;
             }
+        </script>
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+		<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>		 
+		<script type="text/babel">
+            class ManageComp extends React.Component{
+                
+                constructor(props){
+                    super(props);
+
+                    this.state = {value: "Python"};
+
+                    this.eventSubmit = this.eventSubmit.bind(this);
+                    this.eventChange = this.eventChange.bind(this);
+                }
+
+                eventSubmit(event){
+                    if (this.state.value == "other") alert("Вы выбрали: Другой");
+                    else alert("Вы выбрали: "+this.state.value);
+
+                    event.preventDefault();
+                }
+
+                eventChange(event){
+                    this.setState( {value: event.target.value});
+                }
+
+                render(){
+                    return(
+                        <div className = "interview_react">    
+                            <h2>А какой язык программирования нравится тебе:</h2>
+                            <form onSubmit = {this.eventSubmit}>
+                                <select id="yp" name="yp" value = {this.state.value} onChange = {this.eventChange}>
+                                    <option value="Python">Python</option>
+                                    <option value="C#">C#</option>
+                                    <option value="Java">Java</option>
+                                    <option value="other">Другой</option>
+                                </select>
+                                <p><button type="submit">Отправить</button></p>
+                            </form>
+                        </div>
+                    );
+                }
+
+            }
+
+            ReactDOM.render(<ManageComp />,document.getElementById("root"));
         </script>
     </body>
 </html>
